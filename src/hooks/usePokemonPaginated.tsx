@@ -7,12 +7,15 @@ import {
 } from '../interfaces/pokemonInterface';
 
 export const usePokemonPaginated = () => {
+
+    const [isLoading, setIsLoading] = useState(false);
   const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>(
     [],
   );
   const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
   const loadPokemons = async () => {
+    setIsLoading(true);
     const resp = await pokemonApi.get<PokemonPaginatedResponse>(
       nextPageUrl.current,
     );
@@ -21,13 +24,26 @@ export const usePokemonPaginated = () => {
   };
 
   const mapPokemonList = (pokemonList: Result[]) => {
-    pokemonList.forEach(poke => console.log(poke.url));
+    const newPokemonList: SimplePokemon[] = pokemonList.map(({name, url}) => {
+      // "https://pokeapi.co/api/v2/pokemon/1/"
+      const urlParts = url.split('/');
+      const id = urlParts[urlParts.length - 2];
+      const picture =
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
+        id +
+        '.png';
+      return {id, picture, name, url};
+    });
+    setSimplePokemonList([...simplePokemonList, ...newPokemonList]);
+    setIsLoading(false);
   };
+
   useEffect(() => {
     loadPokemons();
   }, []);
 
   return {
-    setSimplePokemonList
-  }
+    isLoading,
+    setSimplePokemonList,
+  };
 };
