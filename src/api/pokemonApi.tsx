@@ -1,3 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const pokemonApi = axios.create();
+export const pokemonApi = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});

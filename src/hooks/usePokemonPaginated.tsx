@@ -1,49 +1,50 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {pokemonApi} from '../api/pokemonApi';
-import {
-  PokemonPaginatedResponse,
-  Result,
-  SimplePokemon,
-} from '../interfaces/pokemonInterface';
+// import React, {useEffect, useRef, useState} from 'react';
+// import {pokemonApi} from '../api/pokemonApi';
+// import {
+//   PokemonPaginatedResponse,
+//   Result,
+//   SimplePokemon,
+// } from '../interfaces/pokemonInterface';
 
-export const usePokemonPaginated = () => {
+// export const usePokemonPaginated = () => {
 
-    const [isLoading, setIsLoading] = useState(false);
-  const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>(
-    [],
-  );
-  const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
+//     const [isLoading, setIsLoading] = useState(false);
+//   const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>(
+//     [],
+//   );
+//   const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
-  const loadPokemons = async () => {
-    setIsLoading(true);
-    const resp = await pokemonApi.get<PokemonPaginatedResponse>(
-      nextPageUrl.current,
-    );
-    nextPageUrl.current = resp.data.next;
-    mapPokemonList(resp.data.results);
-  };
+//   const loadPokemons = async () => {
+//     setIsLoading(true);
+//     const resp = await pokemonApi.get<PokemonPaginatedResponse>(
+//       nextPageUrl.current,
+//     );
+//     nextPageUrl.current = resp.data.next;
+//     mapPokemonList(resp.data.results);
+//   };
 
-  const mapPokemonList = (pokemonList: Result[]) => {
-    const newPokemonList: SimplePokemon[] = pokemonList.map(({name, url}) => {
-      // "https://pokeapi.co/api/v2/pokemon/1/"
-      const urlParts = url.split('/');
-      const id = urlParts[urlParts.length - 2];
-      const picture =
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-        id +
-        '.png';
-      return {id, picture, name, url};
-    });
-    setSimplePokemonList([...simplePokemonList, ...newPokemonList]);
-    setIsLoading(false);
-  };
+//   const mapPokemonList = (pokemonList: Result[]) => {
+//     const newPokemonList: SimplePokemon[] = pokemonList.map(({name, url}) => {
+//       // "https://pokeapi.co/api/v2/pokemon/1/"
+//       const urlParts = url.split('/');
+//       const id = urlParts[urlParts.length - 2];
+//       const picture =
+//         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
+//         id +
+//         '.png';
+//       return {id, picture, name, url};
+//     });
+//     setSimplePokemonList([...simplePokemonList, ...newPokemonList]);
+//     setIsLoading(false);
+//   };
 
-  useEffect(() => {
-    loadPokemons();
-  }, []);
+//   useEffect(() => {
+//     loadPokemons();
+//   }, []);
 
-  return {
-    isLoading,
-    setSimplePokemonList,
-  };
-};
+//   return {
+//     isLoading,
+//     simplePokemonList,
+//     loadPokemons
+//   };
+// };
