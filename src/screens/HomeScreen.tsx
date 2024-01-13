@@ -2,7 +2,8 @@ import React from 'react';
 import {ActivityIndicator, FlatList, Image, Text, View} from 'react-native';
 import {styles} from '../theme/appTheme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import { useGraphQLPokemonList } from '../hooks/useGraphQLPokemonList';
+import {useGraphQLPokemonList} from '../hooks/useGraphQLPokemonList';
+import {PokemonCard} from '../components/PokemonCard';
 // import {usePokemonPaginated} from '../hooks/usePokemonPaginated';
 
 export const HomeScreen = () => {
@@ -26,24 +27,7 @@ export const HomeScreen = () => {
         keyExtractor={pokemon => pokemon.name}
         //renderizar cada elemento
         renderItem={
-          ({item}) => (
-            <View
-              style={{
-                backgroundColor: 'red',
-                marginVertical: 16,
-                marginHorizontal: 16,
-                borderRadius: 20,
-                height: 115,
-                padding: 16
-              }}>
-                <Text style={{fontSize:12}}>{item.id}</Text>
-              <Text style={{color:"white", fontWeight: "bold", fontSize: 26}}>{item.name}</Text>
-              <Image
-                source={{uri: item.picture}}
-                style={{width: 130, height: 130, position: 'absolute', top: -10, right: 0}}
-              />
-            </View>
-          )
+          ({item}) => <PokemonCard pokemon={item} />
           // <Text>{item.name}</Text>
         }
         // infinite scroll
