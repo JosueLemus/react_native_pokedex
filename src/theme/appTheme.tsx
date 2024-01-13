@@ -1,19 +1,27 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    globalMargin: {
-        marginHorizontal: 20
-    },
-    pokeballBG: {
-        position: 'absolute',
-        width: 300,
-        height: 300,
-        top: -100,
-        right: -100,
-        opacity: 0.2
-    },
-    title:{
-        fontSize: 32,
-        fontWeight: 'bold'
-    }
+  globalMargin: {
+    marginHorizontal: 20,
+  },
+  pokeballBG: {
+    position: 'absolute',
+    width: '100%',
+    height: 200,
+    top: 14
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginTop: 32
+  },
+  filterSize: {
+    width: 25,
+    height: 25,
+  },
+  filtersContainer: {
+    flexDirection: 'row',
+    right: 20,
+    top:100
+  },
 });

@@ -8,13 +8,13 @@ export const useGraphQLPokemonList = () => {
     SimplePokemonGQL[]
   >([]);
   const baseUrl: string = 'https://beta.pokeapi.co/graphql/v1beta';
-  const offset = useRef(0);
+  const limit = 10;
   const loadPokemons = async () => {
     setIsLoading(true);
+    const offset = simplePokemonList.length;
     const resp = await pokemonApi.post<GraphQLPokemon>(baseUrl, {
-      query: `query samplePokeAPIquery {pokemon_v2_pokemon(limit: 20, offset: ${offset.current}) {id name pokemon_v2_pokemontypes(limit: 3) {pokemon_v2_type {name}}}}`,
+      query: `query samplePokeAPIquery {pokemon_v2_pokemon(limit: ${limit}, offset: ${offset}) {id name pokemon_v2_pokemontypes(limit: 3) {pokemon_v2_type {name}}}}`,
     });
-    offset.current = offset.current + 20;
     mapPokemonList(resp.data);
   };
 
