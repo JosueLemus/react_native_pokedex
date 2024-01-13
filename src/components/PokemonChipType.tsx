@@ -3,7 +3,7 @@ import {PokemonV2Pokemontype} from '../interfaces/graphQLInterface';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import TextFormattingUtil from '../utilities/TextFormattingUtil';
 import {BackgroundImage} from '../interfaces/pokemonTypeImage';
-import { TypeColorUtil } from '../utilities/TypeColorUtil';
+import {TypeColorUtil} from '../utilities/TypeColorUtil';
 
 interface Props {
   pokemonType: PokemonV2Pokemontype;
@@ -19,11 +19,14 @@ export const PokemonChipType = ({pokemonType}: Props) => {
   return (
     <View
       style={{
-        backgroundColor: TypeColorUtil.getTypeColor(pokemonType.pokemon_v2_type.name),
+        backgroundColor: TypeColorUtil.getTypeColor(
+          pokemonType.pokemon_v2_type.name,
+        ),
         borderRadius: 10,
         padding: 6,
         flexDirection: 'row',
         marginRight: 16,
+        elevation: 10
       }}>
       <Image
         tintColor={'white'}

@@ -34,7 +34,7 @@ export class TypeColorUtil {
     ground: '#DD7748',
     ice: '#61CEC0',
     normal: '#A8A878',
-    poison: '#9DA0AA',
+    poison: '#A552CC',
     psychic: '#EA5D60',
     rock: '#BAAB82',
     steel: '#417D9A',

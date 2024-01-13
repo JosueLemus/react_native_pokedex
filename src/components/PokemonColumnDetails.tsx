@@ -10,7 +10,7 @@ interface Props {
 
 export const PokemonColumnDetails = ({pokemon}: Props) => {
   return (
-    <View style={{justifyContent: 'space-between'}}>
+    <View style={{justifyContent: 'space-between', height:85}}>
       <Text style={styles.idPokemonText}>
         {TextFormattingUtil.formatNumber(pokemon.id)}
       </Text>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   idPokemonText: {
     fontSize: 12,
     fontWeight: '700',
-    color: 'red',
+    color: '#17171B',
+    opacity: 0.6,
   },
   pokemonNameText: {
     color: 'white',

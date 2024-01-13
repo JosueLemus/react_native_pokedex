@@ -17,7 +17,7 @@ export const HomeScreen = () => {
         style={styles.pokeballBG}
       />
       <Text style={{...styles.title, ...styles.globalMargin, top: top + 20}}>
-        Pokedex
+        Pokédex
       </Text>
       <FlatList
         style={{marginTop: 64}}

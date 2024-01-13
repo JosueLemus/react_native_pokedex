@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         opacity: 0.2
     },
     title:{
-        fontSize: 35,
+        fontSize: 32,
         fontWeight: 'bold'
     }
 });
