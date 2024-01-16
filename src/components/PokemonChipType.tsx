@@ -22,18 +22,14 @@ export const PokemonChipType = ({pokemonType}: Props) => {
         backgroundColor: TypeColorUtil.getTypeColor(
           pokemonType.pokemon_v2_type.name,
         ),
-        borderRadius: 10,
-        padding: 6,
-        flexDirection: 'row',
-        marginRight: 16,
-        elevation: 10
+        ...styles.chipBackground,
       }}>
       <Image
         tintColor={'white'}
         source={backgroundImage}
         style={styles.imageStyle}
       />
-      <Text style={{color: 'white', fontSize: 12}}>{pokemonName}</Text>
+      <Text style={styles.typeText}>{pokemonName}</Text>
     </View>
   );
 };
@@ -45,6 +41,17 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   textStyle: {
+    color: 'white',
+    fontSize: 12,
+  },
+  chipBackground: {
+    borderRadius: 10,
+    padding: 6,
+    flexDirection: 'row',
+    marginRight: 16,
+    elevation: 10,
+  },
+  typeText: {
     color: 'white',
     fontSize: 12,
   },

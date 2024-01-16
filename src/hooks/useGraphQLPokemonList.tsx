@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {pokemonApi} from '../api/pokemonApi';
 import {GraphQLPokemon, SimplePokemonGQL} from '../interfaces/graphQLInterface';
 

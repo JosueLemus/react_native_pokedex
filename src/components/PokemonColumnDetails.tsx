@@ -1,6 +1,6 @@
 import React from 'react';
 import {SimplePokemonGQL} from '../interfaces/graphQLInterface';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import TextFormattingUtil from '../utilities/TextFormattingUtil';
 import {PokemonChipType} from './PokemonChipType';
 
@@ -10,7 +10,7 @@ interface Props {
 
 export const PokemonColumnDetails = ({pokemon}: Props) => {
   return (
-    <View style={{justifyContent: 'space-between', height:85}}>
+    <View style={{justifyContent: 'space-between', height: 85}}>
       <Text style={styles.idPokemonText}>
         {TextFormattingUtil.formatNumber(pokemon.id)}
       </Text>

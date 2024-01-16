@@ -12,19 +12,18 @@ import {styles} from '../theme/appTheme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useGraphQLPokemonList} from '../hooks/useGraphQLPokemonList';
 import {PokemonCard} from '../components/PokemonCard';
-// import {usePokemonPaginated} from '../hooks/usePokemonPaginated';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export const HomeScreen = () => {
   const {top} = useSafeAreaInsets();
   const {simplePokemonList, loadPokemons} = useGraphQLPokemonList();
   return (
-    <>
+    <View>
       <Image
         source={require('../assets/Pokeball.png')}
         style={styles.pokeballBG}
       />
-      <View style={{...styles.globalMargin, top: top}}>
+      <View style={{...styles.globalMargin, top: top + 14}}>
         <View
           style={{
             flexDirection: 'row',
@@ -51,52 +50,32 @@ export const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <Text style={{...styles.title}}>Pokédex</Text>
-        <Text style={{fontSize: 16, color: '#747476', marginTop: 8}}>
+        <Text style={styles.subtitle}>
           Search for Pokémon by name or using the National Pokédex number.
         </Text>
 
-        <View
-          style={{
-            backgroundColor: '#F2F2F2',
-            padding: 16,
-            borderRadius: 10,
-            marginTop: 16,
-          }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon
-              name="search"
-              size={20}
-              color="#747476"
-              style={{marginRight: 8}}
-            />
-            <TextInput
-              placeholder="What Pokémon are you looking for?"
-              placeholderTextColor="#747476"
-              style={{flex: 1, color: 'black', fontSize: 16}}
-            />
-          </View>
+        <View style={styles.textInputContainer}>
+          <Icon name="search" size={20} color="#747476" />
+          <TextInput
+            placeholder="What Pokémon are you looking for?"
+            placeholderTextColor="#747476"
+            style={styles.textInput}
+          />
         </View>
       </View>
 
       <FlatList
-        style={{marginTop: 80}}
+        style={{marginTop: top}}
         showsVerticalScrollIndicator={false}
         data={simplePokemonList}
-        //id para cada elemento
         keyExtractor={pokemon => pokemon.name}
-        //renderizar cada elemento
-        renderItem={
-          ({item}) => <PokemonCard pokemon={item} />
-          // <Text>{item.name}</Text>
-        }
-        // infinite scroll
+        renderItem={({item}) => <PokemonCard pokemon={item} />}
         onEndReached={loadPokemons}
         onEndReachedThreshold={0.4}
-        // activityIndicator
         ListFooterComponent={
           <ActivityIndicator style={{height: 100}} size={20} color={'grey'} />
         }
       />
-    </>
+    </View>
   );
 };

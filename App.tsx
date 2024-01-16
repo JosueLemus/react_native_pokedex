@@ -5,7 +5,7 @@ import {Navigator} from './src/navigator/Navigator';
 const App = () => {
   return (
     <NavigationContainer>
-      <Navigator/>
+      <Navigator />
     </NavigationContainer>
   );
 };

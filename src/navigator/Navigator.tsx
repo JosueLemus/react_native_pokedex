@@ -2,8 +2,14 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from '../screens/HomeScreen';
 import {PokemonScreen} from '../screens/PokemonScreen';
+import {SimplePokemonGQL} from '../interfaces/graphQLInterface';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  HomeScreen: undefined;
+  PokemonScreen: {pokemon: SimplePokemonGQL};
+};
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigator = () => {
   return (
