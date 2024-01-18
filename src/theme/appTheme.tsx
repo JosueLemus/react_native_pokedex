@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
     top: 100,
   },
   textInputContainer: {
-    backgroundColor: '#F2F2F2',
     padding: 16,
     borderRadius: 10,
     marginTop: 16,
@@ -40,7 +39,6 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    color: 'black',
     fontSize: 16,
     marginLeft: 8,
   },
