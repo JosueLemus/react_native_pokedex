@@ -28,7 +28,7 @@ export const useGraphQLPokemonList = () => {
     SimplePokemonGQL[]
   >([]);
   const baseUrl: string = 'https://beta.pokeapi.co/graphql/v1beta';
-  const limit = 5;
+  const limit = 10;
 
   const loadPokemons = async () => {
     setIsLoading(true);

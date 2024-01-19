@@ -14,7 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useGraphQLPokemonList } from '../hooks/useGraphQLPokemonList';
 import { PokemonCard } from '../components/PokemonCard';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useThemeHook } from '../hooks/themeHook';
+import { useThemeHook } from '../hooks/useThemeHook';
 
 export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
