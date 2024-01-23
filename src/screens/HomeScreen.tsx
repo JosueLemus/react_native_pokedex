@@ -14,16 +14,27 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useGraphQLPokemonList } from '../hooks/useGraphQLPokemonList';
 import { PokemonCard } from '../components/PokemonCard';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useThemeHook } from '../hooks/useThemeHook';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/themeContext';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParams } from '../navigator/Navigator';
 
 export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
   const { simplePokemonList, loadPokemons, isLoading } =
     useGraphQLPokemonList();
-  const { currentTheme, isSwitchOn, toggleSwitch } = useThemeHook();
 
+  const context = useContext(ThemeContext);
+
+  if (context == null) {
+    return <View></View>;
+  }
+
+  const { theme, isDarkMode, setIsDarkMode } = context;
+  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
   return (
-    <View style={{ backgroundColor: currentTheme.containerBackgroundColor }}>
+    <View style={{ backgroundColor: theme.containerBackgroundColor }}>
       <Image
         source={require('../assets/Pokeball.png')}
         style={{ ...styles.pokeballBG, tintColor: '#B5B9C4', opacity: 0.1 }}
@@ -35,12 +46,12 @@ export const HomeScreen = () => {
             right: 0,
             position: 'absolute',
           }}>
-          <TouchableOpacity onPress={toggleSwitch}>
+          <TouchableOpacity>
             <Image
               source={require('../assets/homefilters/Generation.png')}
               style={{
                 ...styles.filterSize,
-                tintColor: currentTheme.titleTextColor,
+                tintColor: theme.titleTextColor,
               }}
             />
           </TouchableOpacity>
@@ -49,16 +60,16 @@ export const HomeScreen = () => {
               source={require('../assets/homefilters/Sort.png')}
               style={{
                 ...styles.filterSize,
-                tintColor: currentTheme.titleTextColor,
+                tintColor: theme.titleTextColor,
               }}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log('3')}>
+          <TouchableOpacity onPress={() => setIsDarkMode(true)}>
             <Image
               source={require('../assets/homefilters/Filter.png')}
               style={{
                 ...styles.filterSize,
-                tintColor: currentTheme.titleTextColor,
+                tintColor: theme.titleTextColor,
               }}
             />
           </TouchableOpacity>
@@ -66,14 +77,15 @@ export const HomeScreen = () => {
         <View style={{ height: 30, left: 0, position: 'absolute' }}>
           <Switch
             trackColor={{ false: '#767577', true: '#81b0ff' }}
-            thumbColor={isSwitchOn ? '#f5dd4b' : '#f4f3f4'}
+            thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isSwitchOn}
+            onValueChange={setIsDarkMode}
+            value={isDarkMode}
           />
         </View>
-        <Text style={{ ...styles.title, color: currentTheme.titleTextColor }}>
+        <Text style={{ ...styles.title, color: theme.titleTextColor }}>
           Pokédex
+          {/* {isDarkMode ? "dark mode" : "light mode"} */}
         </Text>
         <Text style={styles.subtitle}>
           Search for Pokémon by name or using the National Pokédex number.
@@ -82,13 +94,13 @@ export const HomeScreen = () => {
         <View
           style={{
             ...styles.textInputContainer,
-            backgroundColor: currentTheme.backgroundInput,
+            backgroundColor: theme.backgroundInput,
           }}>
           <Icon name="search" size={20} color="#747476" />
           <TextInput
             placeholder="What Pokémon are you looking for?"
             placeholderTextColor="#747476"
-            style={{ ...styles.textInput, color: currentTheme.titleTextColor }}
+            style={{ ...styles.textInput, color: theme.titleTextColor }}
           />
         </View>
       </View>
@@ -112,6 +124,7 @@ export const HomeScreen = () => {
           </View>
         }
       />
+      {/* <BottomSheet/> */}
     </View>
   );
 };
