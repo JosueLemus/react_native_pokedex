@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     top: 14,
+    tintColor: '#B5B9C4', 
+    opacity: 0.1
   },
   title: {
     fontSize: 32,

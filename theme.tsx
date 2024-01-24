@@ -5,7 +5,7 @@ export interface CustomTheme {
     titleTextColor: string;
     secondaryTextColor: string;
     backgroundInput: string;
-    textSize: number;
+    placeholderColor: String;
 }
 
 // Define tus temas utilizando la interfaz
@@ -15,14 +15,14 @@ export const lightTheme: CustomTheme = {
     titleTextColor: '#17171B',
     secondaryTextColor: '#262626',
     backgroundInput: '#F2F2F2',
-    textSize: 14
+    placeholderColor: "#747476"
 };
 
 export const darkTheme: CustomTheme = {
     containerBackgroundColor: 'black',
     switchButtonBackgroundColor: '#ccc',
     titleTextColor: 'white',
-    secondaryTextColor: 'red',
+    secondaryTextColor: 'white',
     backgroundInput: '#121212',
-    textSize: 40
+    placeholderColor: "#747476"
 };

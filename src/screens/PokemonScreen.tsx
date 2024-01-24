@@ -1,21 +1,28 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { RootStackParams } from '../navigator/Navigator';
-import { useThemeHook } from '../hooks/useThemeHook';
+import { ThemeContext } from '../context/themeContext';
 
-interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
+interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> { }
 
 export const PokemonScreen = ({ navigation, route }: Props) => {
+  const context = useContext(ThemeContext);
+
+  if (context == null) {
+    return <></>;
+  }
+
+  const { theme } = context;
   const { pokemon } = route.params;
-  // const { currentTheme, isSwitchOn, toggleSwitch } = useThemeHook();
+
   return (
     <View
       style={{
-        margin: 60,
-        // backgroundColor: currentTheme.containerBackgroundColor,
+        backgroundColor: theme.containerBackgroundColor,
+        flex: 1
       }}>
-      <Text>{pokemon.name}</Text>
+      <Text style={{color:theme.titleTextColor, padding:40, fontSize:32}}>{pokemon.name}</Text>
     </View>
   );
 };
